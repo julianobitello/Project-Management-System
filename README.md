@@ -60,22 +60,21 @@ Este projeto foi desenvolvido com foco no aprendizado de React e arquitetura fro
 # 📂 Estrutura do projeto
 
 src/
-│
 ├── components/
-│ ├── Dashboard/
-│ ├── ProjectCard/
-│ ├── TaskItem/
-│ └── Sidebar/
+│   ├── Dashboard/
+│   ├── ProjectCard/
+│   ├── TaskItem/
+│   └── Sidebar/
 │
 ├── context/
-│ ├── ProjectContext.tsx
-│ └── ProjectProvider.tsx
+│   ├── ProjectContext.tsx
+│   └── ProjectProvider.tsx
 │
 ├── pages/
-│ └── Home.tsx
+│   └── Home.tsx
 │
 ├── types/
-│ └── Project.ts
+│   └── Project.ts
 │
 ├── App.tsx
 └── main.tsx
