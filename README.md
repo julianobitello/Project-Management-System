@@ -1,73 +1,122 @@
-# React + TypeScript + Vite
+# 📊 Sistema de Gerenciamento de Projetos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Uma aplicação de gerenciamento de projetos desenvolvida com React, TypeScript, Context API e TailwindCSS.
 
-Currently, two official plugins are available:
+Este projeto simula um sistema simples de controle de tarefas e projetos, permitindo criar projetos, adicionar tarefas, marcar como concluído e persistir os dados no localStorage.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+# 🚀 Funcionalidades
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 📁 Projetos
 
-## Expanding the ESLint configuration
+- Criar novos projetos
+- Excluir projetos
+- Marcar projetos como concluídos
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## ✅ Tarefas
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- Adicionar tarefas dentro de projetos
+- Excluir tarefas
+- Marcar tarefas como concluídas / pendentes
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+## 💾 Persistência de dados
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+- Dados salvos automaticamente no `localStorage`
+
+## 🌐 Gerenciamento de estado
+
+- Estado global utilizando Context API
+- Eliminação de prop drilling
+
+---
+
+# 🧠 O que eu aprendi
+
+Este projeto foi desenvolvido com foco no aprendizado de React e arquitetura frontend:
+
+- Componentização e reutilização de componentes
+- Gerenciamento de estado com `useState` e `useEffect`
+- Context API para estado global
+- Custom hook (`useProjects`)
+- Manipulação de formulários no React
+- Atualização imutável de estado
+- Tipagem com TypeScript
+- Persistência com localStorage
+- Estruturação básica de UI com TailwindCSS
+
+---
+
+# 🏗 Tecnologias utilizadas
+
+- React
+- TypeScript
+- Context API
+- TailwindCSS
+- Vite
+
+---
+
+# 📂 Estrutura do projeto
+
+src/
+│
+├── components/
+│ ├── Dashboard/
+│ ├── ProjectCard/
+│ ├── TaskItem/
+│ └── Sidebar/
+│
+├── context/
+│ ├── ProjectContext.tsx
+│ └── ProjectProvider.tsx
+│
+├── pages/
+│ └── Home.tsx
+│
+├── types/
+│ └── Project.ts
+│
+├── App.tsx
+└── main.tsx
+
+---
+
+# 📸 Preview
+
+> Adicione prints ou GIFs do projeto após o deploy.
+
+---
+
+# ▶️ Como rodar o projeto
+
+```bash
+# clonar o repositório
+git clone https://github.com/seu-usuario/sistema-gerenciador-projetos.git
+
+# entrar na pasta
+cd sistema-gerenciador-projetos
+
+# instalar dependências
+npm install
+
+# rodar o projeto
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+🌱 Melhorias futuras (V2)
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+- Layout estilo Kanban (To Do / Em andamento / Concluído)
+- Drag and drop de tarefas
+- Filtros por status
+- Sistema de busca e ordenação
+- Melhorias de UI/UX
+- Sistema de autenticação (opcional)
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+📌 Status
+
+✔ Versão 1 finalizada  
+🚧 Pronto para evolução para V2 (Kanban)
+
+👨‍💻 Autor
+Projeto desenvolvido com foco em aprendizado de React, TypeScript e arquitetura de aplicações frontend.
