@@ -57,8 +57,9 @@ Este projeto foi desenvolvido com foco no aprendizado de React e arquitetura fro
 
 ---
 
-# 📂 Estrutura do projeto
+## 📂 Estrutura do projeto
 
+```
 src/
 ├── components/
 │   ├── Dashboard/
@@ -78,6 +79,7 @@ src/
 │
 ├── App.tsx
 └── main.tsx
+```
 
 ---
 
