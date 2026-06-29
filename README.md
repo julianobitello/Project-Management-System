@@ -83,12 +83,6 @@ src/
 
 ---
 
-# 📸 Preview
-
-> Adicione prints ou GIFs do projeto após o deploy.
-
----
-
 # ▶️ Como rodar o projeto
 
 ```bash
@@ -121,3 +115,17 @@ npm run dev
 
 👨‍💻 Autor
 Projeto desenvolvido com foco em aprendizado de React, TypeScript e arquitetura de aplicações frontend.
+
+## 🌐 Deploy
+
+A aplicação está disponível online através da Vercel:
+
+🔗 **https://project-management-system-pi-five.vercel.app/**
+
+## 📸 Preview
+
+### Aplicação online
+
+https://project-management-system-pi-five.vercel.app/
+
+> Em breve serão adicionadas capturas de tela da aplicação.
