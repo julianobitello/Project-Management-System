@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import type { ReactNode } from "react";
 import { ProjectContext } from "./ProjectContext";
-import type { Project, Task } from "../types/Project";
+import type { Project, Task, ProjectStatus } from "../types/Project";
 
 type Props = {
   children: ReactNode;
@@ -20,7 +20,7 @@ export function ProjectProvider({ children }: Props) {
         id: Date.now(),
         name,
         tasks: [],
-        status: "pendente",
+        status: "todo",
       },
     ]);
   }
@@ -29,8 +29,8 @@ export function ProjectProvider({ children }: Props) {
     setProjects((prev) => prev.filter((p) => p.id !== id));
   }
 
-  function completeProject(id: number) {
-    setProjects((prev) => prev.map((p) => (p.id === id ? { ...p, status: "concluído" } : p)));
+  function updateProjectStatus(id: number, status: ProjectStatus) {
+    setProjects((prev) => prev.map((p) => (p.id === id ? { ...p, status } : p)));
   }
 
   function addTaskToProject(projectId: number, task: Task) {
@@ -73,7 +73,7 @@ export function ProjectProvider({ children }: Props) {
         projects,
         createProject,
         deleteProject,
-        completeProject,
+        updateProjectStatus,
         addTaskToProject,
         deleteTaskFromProject,
         completeTask,

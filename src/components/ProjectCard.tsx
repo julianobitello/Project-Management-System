@@ -1,13 +1,14 @@
 import TaskItem from "./TaskItem";
 import { useProjects } from "../context/ProjectContext";
-import type { Project, Task } from "../types/Project";
+import type { Project, Task, ProjectStatus } from "../types/Project";
 
 type Props = {
   project: Project;
+  handleDragStart: (projectId: number) => void;
 };
 
-export default function ProjectCard({ project }: Props) {
-  const { addTaskToProject, deleteProject, completeProject } = useProjects();
+export default function ProjectCard({ project, handleDragStart }: Props) {
+  const { addTaskToProject, deleteProject, updateProjectStatus } = useProjects();
 
   function handleAddTask(event: React.FormEvent<HTMLFormElement>, projectId: number) {
     event.preventDefault();
@@ -35,40 +36,119 @@ export default function ProjectCard({ project }: Props) {
   }
 
   return (
-    <div className="bg-white p-4 rounded shadow-sm border space-y-4">
+    <div
+      draggable
+      onDragStart={() => handleDragStart(project.id)}
+      className="
+        bg-white
+        rounded-2xl
+        border
+        border-slate-200
+        shadow-sm
+        hover:shadow-lg
+        transition-all
+        duration-200
+        cursor-grab
+        active:cursor-grabbing
+        p-5
+        space-y-5
+      "
+    >
       {/* HEADER */}
-      <div className="flex justify-between items-center">
-        <h2 className="font-semibold text-lg">{project.name}</h2>
+      <div className="space-y-2">
+        <div className="flex justify-between items-start gap-3">
+          <h2 className="text-xl font-bold text-slate-800 break-words">{project.name}</h2>
 
-        <span className="text-sm text-gray-500">{project.status}</span>
+          <span className="text-xs text-slate-400 font-medium uppercase">#{project.id.toString().slice(-4)}</span>
+        </div>
+
+        <div className="inline-flex items-center rounded-full bg-slate-100 px-3 py-1">
+          <span className="text-xs font-semibold text-slate-600 uppercase tracking-wide">{project.status}</span>
+        </div>
       </div>
 
       {/* ACTIONS */}
       <div className="flex gap-2">
-        <button
-          onClick={() => completeProject(project.id)}
-          className="text-sm bg-green-100 text-green-700 px-2 py-1 rounded"
+        <select
+          value={project.status}
+          onChange={(e) => updateProjectStatus(project.id, e.target.value as ProjectStatus)}
+          className="
+            flex-1
+            border
+            border-slate-300
+            rounded-lg
+            px-3
+            py-2
+            bg-white
+            text-sm
+            outline-none
+            focus:ring-2
+            focus:ring-blue-500
+          "
         >
-          Concluir
-        </button>
+          <option value="todo">📋 To Do</option>
+          <option value="doing">🚀 Em andamento</option>
+          <option value="done">✅ Concluído</option>
+        </select>
 
-        <button onClick={() => deleteProject(project.id)} className="text-sm bg-red-100 text-red-700 px-2 py-1 rounded">
-          Excluir
+        <button
+          onClick={() => deleteProject(project.id)}
+          className="
+            bg-red-50
+            hover:bg-red-100
+            text-red-600
+            px-4
+            rounded-lg
+            transition
+            font-medium
+          "
+        >
+          🗑
         </button>
       </div>
 
-      {/* TASK FORM */}
+      {/* NOVA TASK */}
       <form onSubmit={(e) => handleAddTask(e, project.id)} className="flex gap-2">
-        <input className="border p-2 w-full rounded" name="task" placeholder="Nova task" />
+        <input
+          name="task"
+          placeholder="Nova tarefa..."
+          className="
+            flex-1
+            border
+            border-slate-300
+            rounded-lg
+            px-3
+            py-2
+            outline-none
+            focus:ring-2
+            focus:ring-blue-500
+          "
+        />
 
-        <button type="submit" className="bg-blue-500 text-white px-3 rounded">
+        <button
+          type="submit"
+          className="
+            bg-blue-600
+            hover:bg-blue-700
+            text-white
+            rounded-lg
+            px-4
+            transition
+            font-semibold
+          "
+        >
           +
         </button>
       </form>
 
-      {project.tasks.map((task) => (
-        <TaskItem key={task.id} task={task} projectId={project.id} />
-      ))}
+      {/* TASKS */}
+      <div className="space-y-3">
+        {project.tasks.length === 0 ? (
+          <p className="text-center text-sm text-slate-400 py-2">Nenhuma tarefa cadastrada.</p>
+        ) : (
+          project.tasks.map((task) => <TaskItem key={task.id} task={task} projectId={project.id} />)
+        )}
+      </div>
     </div>
   );
 }

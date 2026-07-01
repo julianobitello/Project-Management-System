@@ -6,9 +6,11 @@ export type Task = {
   priority: "low" | "medium" | "high";
 };
 
+export type ProjectStatus = "todo" | "doing" | "done";
+
 export type Project = {
   id: number;
   name: string;
   tasks: Task[];
-  status: "pendente" | "em andamento" | "concluído";
+  status: ProjectStatus;
 };
